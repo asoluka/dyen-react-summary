@@ -1,10 +1,15 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { getAuthData, login } from "../../../features/auth/authSlice";
+import {} from "../../../features/counter/counterSlice";
 import { Input, Text } from "../../atoms";
 import { AuthBanner } from "../../organisms";
 import { AuthTemplate } from "../../templates";
 
 export const LoginPage = () => {
+  const auth = useSelector(getAuthData);
+  const dispatch = useDispatch();
   const initialData = {
     email: "",
     password: "",
@@ -12,8 +17,9 @@ export const LoginPage = () => {
   };
   const [formValues, setFormValues] = useState(initialData);
   const handleSubmit = () => {
-    console.log(formValues);
+    // console.log(formValues);
     setFormValues(initialData);
+    dispatch(login(formValues));
   };
   const handleChange = (e) =>
     setFormValues((prev) => {
@@ -55,18 +61,21 @@ export const LoginPage = () => {
           <Text type="p">
             Not registered? <Link to="/signup">Sign Up</Link>
           </Text>
-          <div class="col-auto">
-            <button onClick={handleSubmit} class="btn btn-primary mb-3">
+          <div className="col-auto">
+            <button onClick={handleSubmit} className="btn btn-primary mb-3">
               Login
             </button>
           </div>
         </div>
       }
       left={
-        <AuthBanner
-          leadText="Login"
-          subText="Provide login details to gain access"
-        />
+        <>
+          {console.log(auth)}
+          <AuthBanner
+            leadText="Login"
+            subText="Provide login details to gain access"
+          />
+        </>
       }
     />
   );

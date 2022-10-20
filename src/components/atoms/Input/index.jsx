@@ -37,7 +37,7 @@ export const Input = ({
   }
 
   return (
-    <div class="mb-3 row">
+    <div className="mb-3 row">
       <label className="col-form-label" htmlFor={id}>
         {label}
       </label>

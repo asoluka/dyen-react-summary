@@ -61,8 +61,8 @@ export const SignupPage = () => {
           <Text type="p">
             Already signed up? <Link to="/login">Login</Link>
           </Text>
-          <div class="col-auto">
-            <button onClick={handleSubmit} class="btn btn-primary mb-3">
+          <div className="col-auto">
+            <button onClick={handleSubmit} className="btn btn-primary mb-3">
               Sign Up
             </button>
           </div>
