@@ -13,7 +13,6 @@ export const SignupPage = () => {
   };
   const [formValues, setFormValues] = useState(initialData);
   const handleSubmit = () => {
-    console.log(formValues);
     setFormValues(initialData);
   };
   const handleChange = (e) =>

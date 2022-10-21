@@ -1,14 +1,13 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import { getAuthData, login } from "../../../features/auth/authSlice";
-import {} from "../../../features/counter/counterSlice";
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { loginAsync } from "../../../store/features/auth/authSlice";
 import { Input, Text } from "../../atoms";
 import { AuthBanner } from "../../organisms";
 import { AuthTemplate } from "../../templates";
 
 export const LoginPage = () => {
-  const auth = useSelector(getAuthData);
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const initialData = {
     email: "",
@@ -17,9 +16,9 @@ export const LoginPage = () => {
   };
   const [formValues, setFormValues] = useState(initialData);
   const handleSubmit = () => {
-    // console.log(formValues);
     setFormValues(initialData);
-    dispatch(login(formValues));
+    dispatch(loginAsync(formValues));
+    navigate("/profile");
   };
   const handleChange = (e) =>
     setFormValues((prev) => {
@@ -28,6 +27,13 @@ export const LoginPage = () => {
         [e.target.name]: e.target.value,
       };
     });
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      navigate("/profile");
+    }
+  });
 
   return (
     <AuthTemplate
@@ -70,7 +76,6 @@ export const LoginPage = () => {
       }
       left={
         <>
-          {console.log(auth)}
           <AuthBanner
             leadText="Login"
             subText="Provide login details to gain access"
