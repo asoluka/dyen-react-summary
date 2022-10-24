@@ -1,10 +1,11 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { Input, Text } from "../../atoms";
 import { AuthBanner } from "../../organisms";
 import { AuthTemplate } from "../../templates";
 
 export const SignupPage = () => {
+  const navigate = useNavigate();
   const initialData = {
     firstName: "",
     lastName: "",
@@ -22,7 +23,12 @@ export const SignupPage = () => {
         [e.target.name]: e.target.value,
       };
     });
-
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      navigate("/profile");
+    }
+  });
   return (
     <AuthTemplate
       right={

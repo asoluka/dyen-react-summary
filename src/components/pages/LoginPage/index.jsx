@@ -15,11 +15,12 @@ export const LoginPage = () => {
     address: "",
   };
   const [formValues, setFormValues] = useState(initialData);
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     setFormValues(initialData);
-    dispatch(loginAsync(formValues));
+    await dispatch(loginAsync(formValues));
     navigate("/profile");
   };
+
   const handleChange = (e) =>
     setFormValues((prev) => {
       return {
