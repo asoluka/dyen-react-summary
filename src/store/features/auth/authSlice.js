@@ -15,11 +15,9 @@ export const authSlice = createSlice({
     data: {},
   },
   reducers: {
-    login: (state, action) => {
-      state.data = {
-        ...state.data,
-        ...action.payload,
-      };
+    logout: async (state, action) => {
+      await localStorage.removeItem("token");
+      state.data = {};
     },
   },
   extraReducers: {
@@ -32,6 +30,6 @@ export const authSlice = createSlice({
   },
 });
 
-export const { login } = authSlice.actions;
+export const { logout } = authSlice.actions;
 export const getAuthData = (state) => state.auth.data;
 export default authSlice.reducer;
