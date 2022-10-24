@@ -1,11 +1,10 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { PageTemplate } from "../../templates";
 
 export const HomePage = () => {
   return (
-    <div>
-      <Link to="/login">Login</Link>
-      <Link to="/signup">Sign Up</Link>
-    </div>
+    <PageTemplate header={<div>Different header</div>}>
+      <h1>Welcome to home page</h1>
+    </PageTemplate>
   );
 };

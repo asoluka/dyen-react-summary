@@ -1,5 +1,5 @@
 import React from "react";
 
 export const Footer = () => {
-  return <div>Footer</div>;
+  return <footer>&copy; All rights reserved. DYEN 2022</footer>;
 };
